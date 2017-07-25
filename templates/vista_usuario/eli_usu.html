@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+ {% block titulotem %} Eliminar Usuario. {% endblock %}
+{% block contenido %}
+
+	<form method="post">
+		{% csrf_token %}
+ 		<tr>
+			<td>
+				<h2>Desea Eliminar el Usuario {{ object.first_name }}</h2>
+			</td>
+		</tr>
+				<button class="btn btn-danger" type="submit" ><i class="fa fa-fw fa-trash 4x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				<a class="btn btn-primary" href="{% url 'vista2' %}"><i class="fa fa-fw fa-undo 4x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	</form>
+
+{% endblock %} 

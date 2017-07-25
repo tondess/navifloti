@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+ {% block titulotem %} ELIMINIAR PREGUNTA {% endblock %}
+{% block contenido %}
+		
+	<form method="post">
+		{% csrf_token %}
+ 		<table>
+	 		<tr>
+				<td>
+					<h2>Desea Eliminar la pregunta?</h2>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					<button class="btn btn-sm btn-danger" type="submit" ><i class="fa fa-fw fa-trash 4x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Si&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					<a class="btn btn-sm btn-primary" onclick="history.back(-1)"><i class="fa fa-fw fa-undo 4x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+
+
+{% endblock %} 

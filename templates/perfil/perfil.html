@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %}PERFIL DE USUARIO{% endblock %}
+
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <table style="width: 100%">
+		                            <tr>
+		                            	<td align="left"><h3 class="panel-title"><i class="fa fa-user"></i> Perfil de Usuario</h3> </td>
+		                               	<td align="right"><a href='javascript:window.print(); void 0;'><i class="fa fa-2x fa-print"></i></a></td>
+		                            </tr>
+		                        </table> 
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+										<tr>
+											<td><b>Cedula:</td><td>{{ user.ci }}</td>
+										<tr>
+											<td><b>Nombre:</td><td>{{ user.first_name }}</td>
+										</tr>
+										<tr>
+											<td><b>Apellido:</td><td>{{ user.last_name }}</td>
+										</tr>	
+										<tr>
+											<td><b>Nombre de Usuario:</td><td>{{ user.username }}</td>
+										</tr>	
+										<tr>
+											<td><b>Correo Electronico:</td><td>{{ user.email }}</td>
+										</tr>
+										<tr>
+											<td><b>Especialidad:</td><td>{{ user.esp }}</td>
+										</tr>
+										<tr>
+											<td><b>Tipo:</td><td>{{ user.tipo_usuario }}</td>
+										</tr>
+									</table>
+                            	<form>
+									<p align="center"><a class="msg-warning btn btn-primary" href="{% url 'vista3' user.ci %}"><i class="fa fa-fw fa-edit 4x"></i> Modificar Datos</a>&nbsp;&nbsp;<a href="{% url 'c_contra' %}" class="btn btn-primary"><i class="fa fa-fw fa-edit 4x"></i> Cambiar Contraseña</a>&nbsp;&nbsp;<a class="btn btn-danger" href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a></p>
+								</form>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+{% endblock %} 

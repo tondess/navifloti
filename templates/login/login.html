@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block title %}login NAVIFLOTI{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block titulotem %}
+INGRESO A NAVIFLOTI
+{% endblock %}
+
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-user"></i> Usuario</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+									<form method="post" autocomplete="off">
+									{% csrf_token %}
+									<table>
+											<tr>
+												<td><label for="username">Usuario:</label></td>
+												<td><input type="text" name="username" required autofocus></td>
+											</tr>	
+											<tr>
+												<td><label for="password">Contraseña:</label></td>
+												<td><input  type="password" name="password" required></td>
+											</tr>	
+											<tr>
+												<td><a href="#"></a></td>
+												<td><input type="submit" class="btn btn-sm btn-primary" value="Ingresar">&nbsp;<input type="reset" class="btn btn-sm btn-warning" value="Limpiar"></td>
+											</tr>			
+									</table>
+									</form>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+ 					<div class="col-lg-4" style="padding-left: 5%">
+                        <a><img width="250" height="150" src="{% static 'imagenes/logo3.png' %}"></a>
+                    </div>
+                    <div class="col-lg-4" >
+                        <a><img width="210" height="180" src="{% static 'imagenes/logo.png' %}"></a>
+                    </div>
+                </div> 
+{% endblock %} 

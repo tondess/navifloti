@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% block titulotem %}MODIFICAR USUARIO{% endblock %}
+    {% block mensaje %}
+    {% if user.tipo_usuario = 'Profesor' %}
+      <i class="fa fa-fw fa-mail-forward"></i> Los usuarios tipo "Profesor" solo pueden registrar estudiantes
+    {% endif %}
+    {% endblock %}
+
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-user"></i> Usuario</h3>
+                            </div>
+                            <div class="panel-body">
+                              <div class="table-responsive">
+                                <div class="form-group">
+                                    <form method="post" autocomplete="off">
+                                    {% csrf_token %}
+                                        <table >
+                                            <tr>
+                                                  <td><label for="ci">Cédula:</label></td>
+                                                  <td>{{ form.ci }}</td>
+                                                </tr>
+                                                  <td><label for="first_name">Nombre:</label></td>
+                                                  <td>{{ form.first_name }}
+                                                </tr>
+                                                <tr>
+                                                  <td><label for="last_name">Apellidos:</label></td>
+                                                  <td>{{ form.last_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td><label for="username">Nombre de Usuario:</label></td>
+                                                  <td>{{ form.username }}{% if form.errors.username %}<tr><td></td><td><span>° Ya existe este Nombre de Usuario</span></td></tr>{% endif %}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td><label for="email">Correo Electrónico:</label></td>
+                                                  <td>{{ form.email }}</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                  <td><label for="esp">{% if user.tipo_usuario = '' %}Especialidad:{% else %}Carrera:{% endif %}</label></td>
+                                                  <td>
+                                                      <select id="esp" name="esp" class="form-control">
+                                                      <option value="Mecanica" class="Mecanica">Mecanica</option>
+                                                      <option value="Mantenimiento" class="Mantenimiento">Mantenimiento</option>
+                                                      <option value="Naval" class="Naval">Naval</option>
+                                                    </select>
+                                                  </td>
+                                                </tr>
+
+                                                <tr>
+                                                  <td><label for="tipo_usuario">Tipo de usuario:</label></td>
+                                                  <td>
+                                                    <select id="tipo_usuario" name="tipo_usuario" class="form-control">
+                                                    {% if user.tipo_usuario = '' %}
+                                                      <option value="Profesor" class="Profesor">Profesor</option>
+                                                    {% endif %}
+                                                      <option value="Estudiante" class="Estudiante">Estudiante</option>
+                                                    </select> 
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td><label for="password1">Contraseña:</label></td>
+                                                  <td>{{ form.password1 }}{{ form.password1.errors }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td><label for="password2">Repetir Contraseña:</label>
+                                                  </td>
+                                                  <td>{{ form.password2 }}{{ form.errors.password2 }}</td>
+                                                </tr>
+                                                <tr>
+                                                  <td></td>
+                                                  <td>
+                                                  </td>
+                                                </tr>
+                                                <td></td>              
+                                                <td><button type="submit"  class="btn btn-sm btn-primary"><i class="fa fa-fw fa-save"></i> Modificar</button>&nbsp;<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pagelines"></i> Limpiar</button> <a class="btn btn-sm btn-danger" href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a></td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+{% endblock %} 

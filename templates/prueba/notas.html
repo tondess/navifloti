@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %} LISTA DE NOTAS {% endblock %}
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<table style="width: 100%">
+                            <tr>
+                               	<td align="right"><a href='javascript:window.print(); void 0;'><i class="fa fa-2x fa-print"></i></a></td>
+                            </tr>
+                        </table> 
+                   </div>
+                </div>
+	<table class="table table-bordered table-hover table-striped">
+	{% if object_list %}
+	<h2>Notas:</h2>
+			<thead>
+				<tr>
+					<th>Cedula:</th>
+					<th>Nombres:</th>
+					<th>Nota</th>
+					<th>Fecha de Evaluación</th>
+				</tr>
+			</thead>
+		<tbody>
+			{% for nota in object_list %}
+				<tr>
+					<td>{{ nota.ci_e.ci }}</td>
+					<td>{{ nota.ci_e.first_name }} {{ nota.ci_e.last_name }}</td>
+					<td>{{ nota.nota }}</td>
+					<td>{{ nota.fecha }}</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<h1>No Existen Notas Para esta Prueba.</h1>
+		{% endif %}
+		</tbody>
+	</table>
+	<div class="col-lg-12">
+	<table align="right">
+		<tr><td><a class="btn btn-danger"  href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a></td></tr>
+	</table>
+	</div>
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+		<a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+		{% endif %}
+	</li>
+	<li>
+		{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+		{% endif %}
+	</li>
+</ul>
+{% endblock %} 

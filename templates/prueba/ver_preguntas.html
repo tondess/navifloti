@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %}LISTA DE PREGUNTAS{% endblock %}
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<table style="width: 100%">
+                            <tr>
+                               	<td align="right"><a href='javascript:window.print(); void 0;'><i class="fa fa-2x fa-print"></i></a></td>
+                            </tr>
+                        </table> 
+                   </div>
+                </div>
+		<table class="table table-bordered table-hover table-striped">
+			{% if obj_pre %}
+			<h2>Preguntas:</h2>
+			<thead>
+				<tr>
+					<th>Codigo:</th>
+					<th>Pregunta:</th>
+					<th>Valor:</th>
+					<th>Respuesta 1:</th>
+					<th>Respuesta 2:</th>
+					<th>Respuesta 3:</th> 
+					<th>Respuesta 4:</th>
+					<th>Acción:</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for preguntas in obj_pre %}
+					<tr>
+						<td>{{ preguntas.cod_pregunta }}</td>
+						<td>{{ preguntas.pregunta }}</td>
+						<td>{{ preguntas.ponderacion }}</td>
+						<td>{{ preguntas.r1 }}</td>
+						<td>{{ preguntas.r2 }}</td>
+						<td>{{ preguntas.r3 }}</td>
+						<td>{{ preguntas.r4 }}</td>
+						<td>
+						<a class="btn btn-primary" href="{% url 'e_preg' preguntas.cod_pregunta  %}" ><i class="fa fa-fw fa-edit 4x"></i>Editar</a>
+						<a class="btn btn-danger" href="{% url 'eli_p' preguntas.cod_pregunta  %}"><i class="fa fa-fw fa-trash 4x"></i>Eliminar</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<h1>No Hay Preguntas Cargadas.</h1>
+			{% endif %}
+			</tbody>
+		</table>
+	<div class="col-lg-12">
+	<table align="right">
+		<tr><td><a class="btn btn-danger"  href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a></td></tr>
+	</table>
+	</div>
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+		<a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+		{% endif %}
+	</li>
+	<li>
+		{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+		{% endif %}
+	</li>
+</ul>
+{% endblock %} 
+

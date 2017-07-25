@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% block titulotem %} {% if request.path == '/pruebas/registrar_prueba/' %}REGISTRAR PRUEBA{% else %}EDITAR PRUEBA{% endif %}{% endblock %}
+
+{% block contenido %}
+<div class="pruebascroll">
+<form method="post"> 
+{% csrf_token %}
+		<table id="prueba" class="tabla1">
+			<tr> 
+				<td colspan="6">
+				<label for="titulo">Titulo:</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6">
+				<textarea type="text" id="titulo" rows="3" cols="85" name="titulo" required>{{ object.titulo }}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<label for="ci_p_id">C.I: Profesor.</label>
+				</td>
+				<td>
+				<label for="valor">Valor:</label>
+				</td>
+				<td>
+				<label for="seccion">Seccion:</label>
+				</td>
+				<td>
+				<label for="fecha">Fecha:</label>
+				</td>
+				<td>
+				<label for="hora">Hora:</label>
+				</td>				
+				<td>
+				<label for="Duracion">Duracion:</label>
+				</td>
+			</tr>
+			<tr>
+				<td><input id="ci_p" type="text" readonly="true" name="ci_p" size="8px" value="{{ user.ci }}" required ></td>
+				<td><input id="valor" type="number" max="25" min="5" style="width: 36px" name="valor" size="2px" value="{{ object.valor }}" required> ptos</td>
+				<td><input id="seccion" type="number" style="width: 36px" name="seccion" size="2px" value="{{ object.seccion }}" required > n°</td>
+				<td><input id="fecha" type="date" name="fecha" size="3px" value="{{ object.fecha }}" required min="2017-07-17" ></td>
+				<td><input id="hora" type="time" name="hora" size="3px" value="{{ object.hora }}" required ></td>
+				<td><input id="Duracion" type="number" style="width: 36px" name="Duracion" size="3px" value="{{ object.Duracion }}" required >Hrs</td>
+			</tr>
+			<tr>
+				<td colspan="6" align="right">
+				<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-save"></i> Registrar</button>&nbsp;<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pagelines"></i> Limpiar</button> <a class="btn btn-danger" href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a>
+				</td>
+			</tr>
+		</table>	
+</form>
+</div>
+
+{% endblock %}

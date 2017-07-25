@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %}CAMBIAR CONTRASEÑA{% endblock %}
+
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-user"></i> Cambiar Contraseña</h3>
+                            </div>
+                            <div class="panel-body">
+								<form method="post" >
+								  {% csrf_token %}
+								  <table>
+									  <tr>
+									  	<td>Contraseña(Actual):</td>
+										<td>{{ form.old_password }}{{ form.errors.old_password }}</td>
+									  </tr>
+									  <tr>
+									  	<td>Nueva Contraseña:</td>
+										<td>{{ form.new_password1 }}{{ form.errors.new_password1 }}</td>
+									  </tr>
+									  <tr>
+									  	<td>Repetir Nueva Contraseña:</td>
+										<td>{{ form.new_password2 }}{{ form.errors.new_password2 }}</td>
+									  </tr>
+									  <tr>
+										<td colspan="2" align="right">
+									  	<button type="submit"  class="btn btn-sm btn-primary"><i class="fa fa-fw fa-recycle"></i>Cambiar Contraseña</button>&nbsp;<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pagelines"></i> Limpiar</button>&nbsp;<a class="btn btn-sm btn-danger" href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a>
+									  	</td>
+									  </tr>
+
+								  </table>
+								  	
+								</form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+{% endblock %} 

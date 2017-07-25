@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %}LISTA DE PRUEBAS{% endblock %}
+{% block contenido %}
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<table style="width: 100%">
+                            <tr>
+                               	<td align="right"><a href='javascript:window.print(); void 0;'><i class="fa fa-2x fa-print"></i></a></td>
+                            </tr>
+                        </table> 
+                   </div>
+                </div>
+		<table class="table table-bordered table-hover table-striped">
+			{% if object_list %}
+			<h2>Pruebas:</h2>
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Profesor</th>
+					<th>Titulo</th>
+					<th>Hora</th>
+					<th>Seccion</th> 
+					<th>Fecha</th>
+					<th>Valor</th>
+					{% if user.tipo_usuario != 'Estudiante' %}<th>Estatus</th>{% endif %}
+					<th>Accion</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for prueba in object_list %}
+					<tr>
+						<td>{{ prueba.cod_prueba }}</td>
+						<td>{{ prueba.ci_p }}</td>
+						<td><mark><b>{{ prueba.titulo }}</b></mark></td>
+						<td>{{ prueba.hora }}</td>
+						<td>{{ prueba.seccion }}</td>
+						<td>{{ prueba.fecha }}</td> 
+						<td>{{ prueba.valor }}</td>
+						{% if user.tipo_usuario != 'Estudiante' %}<td><mark><b>{% if prueba.activa = True %} Activa {% else %} Desactivada {% endif %}</b></mark></td>{% endif %}
+						<td>
+						{% if user.tipo_usuario != 'Estudiante' %}
+						<table>
+							<tr>
+								<td>
+									<a class="btn btn-sm btn-primary" title="Editar" href="{% url 'modp' prueba.cod_prueba %}"><i class="fa fa-fw fa-edit 4x"></i> Editar</a>
+
+									<a class="btn btn-sm btn-danger" title="Activar/Desactivar" href="{% url 'act_dct' prueba.cod_prueba %}"><i class="fa fa-fw fa-power-off"></i> Act/Dsc</a>
+
+									<a class="btn btn-sm btn-primary" title="VER PRUEBA" href="{% url 'v_pru' prueba.cod_prueba %}" style="margin-top: 2px"><i class="fa fa-fw fa-binoculars 4x"></i> Ver Prueba</a>	
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a class="btn btn-sm btn-primary" title="Añadir Preguntas" href="{% url 'c_preg' prueba.cod_prueba %}" style="margin-top: 2px"><i class="fa fa-fw fa-edit 4x"></i> Añadir Preguntas</a>
+						
+									<a class="btn btn-sm btn-primary" title="Ver Preguntas" href="{% url 'v_preg' prueba.cod_prueba %}" style="margin-top: 2px"><i class="fa fa-fw fa-binoculars 4x"></i> Ver Preg.</a>
+									<a class="btn btn-sm btn-primary" title="Ver Notas" href="{% url 'v_not_e' prueba.cod_prueba %}" style="margin-top: 2px"><i class="fa fa-fw fa-binoculars 4x"></i> Ver Notas</a> 
+							
+								</td>
+							</tr>
+						</table>
+						{% else %}
+						<a class="btn btn-sm btn-primary" title="VER PRUEBA" href="{% url 'v_pru_e' prueba.cod_prueba %}" style="margin-top: 2px"><i class="fa fa-fw fa-edit 4x"></i> Ver Prueba</a>
+						{% endif %}
+
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<h1 style="color:black">No Hay Pruebas Cargadas.</h1>
+			{% endif %}
+			</tbody>
+		</table>
+	<div class="col-lg-12">
+	<table align="right">
+		<tr><td><a class="btn btn-danger"  href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a></td></tr>
+	</table>
+	</div>
+<ul class="pager">
+	<li>
+		{% if page_obj.has_previous %}
+		<a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+		{% endif %}
+	</li>
+	<li>
+		{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+		{% endif %}
+	</li>
+</ul>
+{% endblock %} 

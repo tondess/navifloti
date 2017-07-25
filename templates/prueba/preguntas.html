@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+ {% block titulotem %}AÑADIR PREGUNTA{% endblock %}
+{% block contenido %}
+<form method="post">
+{% csrf_token %}
+	<table> 
+				<tr> 
+					<td align="right">
+					<label for="ponderacion" >Ponderacion de la Pregunta: </label>
+					<input name="ponderacion" type="number" style="width: 36px" max="10" min="1" required name="ponderacion" size="3px"><b>Ptos
+					</td>
+				</tr>	
+				<tr>
+					<td>
+					<label for="pregunta">Pregunta:</label> 
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" >
+					<textarea type="text" input type="text" name="pregunta" required  name="pregunta" rows="2" cols="85" class="form-control"></textarea>
+					</td>
+				</tr>
+
+				<tr> 
+					<td colspan="2">
+					<label for="r1">Respuesta #1:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<textarea type="text" name="r1" required  rows="2" cols="85" class="form-control"></textarea>
+					</td>				
+				</tr>
+				<tr> 
+					<td colspan="2">
+					<label for="r2">Respuesta #2:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<textarea type="text" name="r2" required  rows="2" cols="85" class="form-control"></textarea>
+					</td>
+				</tr>
+				<tr> 
+					<td colspan="2">
+					<label for="r3">Respuesta #3:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<textarea type="text" name="r3" required  rows="2" cols="85" class="form-control"></textarea>
+					</td>
+				</tr>
+				<tr> 
+					<td colspan="2">
+					<label for="r4">Respuesta #4:</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<textarea type="text" name="r4" required  rows="2" cols="85" class="form-control"></textarea>
+					</td>
+				</tr> 
+				<tr> 
+					<td colspan="2">
+					<label for="r4">Indique la respuesta correcta:</label>
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<select name="rc" class="form-control" required>
+							<option value="">Selecciona una Respuesta</option>
+							<option value="r1">Respuesta #1</option>
+							<option value="r2">Respuesta #2</option>
+							<option value="r3">Respuesta #3</option>
+							<option value="r4">Respuesta #4</option>
+	                    </select>
+					</td>
+				</tr> 
+				<tr><td></td></tr>
+				<tr>
+					<td  align="right">
+						<button type="submit"  class="btn btn-sm btn-primary"><i class="fa fa-fw fa-save"></i> Registrar</button>&nbsp;
+						<button type="reset" class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pagelines"></i> Limpiar</button>&nbsp;
+						<a class="btn btn-sm btn-danger" href="{% url 'home' %}"><i class="fa fa-fw fa-sign-out 4x"></i> Salir</a>
+					</td>
+				</tr>
+	</table>
+</form>
+{% endblock %} 
